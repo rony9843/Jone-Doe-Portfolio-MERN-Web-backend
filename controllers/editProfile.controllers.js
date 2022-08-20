@@ -1,28 +1,7 @@
-const ProfileImageSchema = require("../model/porfileImage.model");
+const ProfileImageSchema = require("../model/profileImage.model");
+const ProfileTopTitleSchema = require("../model/profile.topTitle.model");
+const ProfileNameSchema = require("../model/profileName.model");
 
-// * Update The Profile image Link
-exports.postProfileImageRoute = async (req, res) => {
-  try {
-    const profile_image_link = req.body.profileImageLink;
-
-    // ~ find
-    const newProfile_image_link = await ProfileImageSchema.findOne({
-      _id: "62fd864f54fbb02e224a8b14",
-    });
-
-    // ~ update the link
-    newProfile_image_link.url = profile_image_link;
-
-    await newProfile_image_link.save();
-
-    res.status(201).json({
-      message: "Image updated",
-      image_url: profile_image_link,
-    });
-  } catch (error) {
-    console.log(error);
-  }
-};
 // * Update The Profile image Link
 exports.postProfileImageRoute = async (req, res) => {
   try {
@@ -61,5 +40,85 @@ exports.getProfileImageRoute = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
+  }
+};
+
+// * get The Profile top title
+exports.getProfileTopTitle = async (req, res) => {
+  try {
+    // ~ find
+    const newProfileTopTitle = await ProfileTopTitleSchema.findOne({
+      _id: "62fe51a9cbb6aa54a065b31c",
+    });
+
+    res.status(200).json({
+      message: newProfileTopTitle,
+    });
+  } catch (error) {
+    res.send(500).send(error.message);
+  }
+};
+
+// * Update The Profile title
+exports.updateProfileTitle = async (req, res) => {
+  try {
+    // * get data in the value
+    const ProfileTopTitle = req.body.title;
+
+    // ~ find
+    const newProfileTopTitle = await ProfileTopTitleSchema.findOne({
+      _id: "62fe51a9cbb6aa54a065b31c",
+    });
+
+    // ~ update the link
+    newProfileTopTitle.topTitle = ProfileTopTitle;
+
+    await newProfileTopTitle.save();
+
+    res.status(200).json({
+      message: newProfileTopTitle,
+    });
+  } catch (error) {
+    res.send(500).send(error.message);
+  }
+};
+
+// * get The Profile Name
+exports.getProfileName = async (req, res) => {
+  try {
+    // ~ find
+    const newProfileName = await ProfileNameSchema.findOne({
+      _id: "62fe7d9fa9f81c9eac7d4566",
+    });
+
+    res.status(200).json({
+      message: newProfileName,
+    });
+  } catch (error) {
+    res.send(500).send(error.message);
+  }
+};
+
+// * Update The Profile Name
+exports.updateProfileName = async (req, res) => {
+  try {
+    // * get data in the value
+    const userName = req.body.name;
+
+    // * find data
+    const newUser = await ProfileNameSchema.findOne({
+      _id: "62fe7d9fa9f81c9eac7d4566",
+    });
+
+    // ~ update the name
+    newUser.ProfileName = userName;
+
+    await newUser.save();
+
+    res.status(200).json({
+      message: userName,
+    });
+  } catch (error) {
+    res.send(500).send(error.message);
   }
 };
