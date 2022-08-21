@@ -5,6 +5,11 @@ const {
   getProfileTopTitle,
   getProfileName,
   updateProfileName,
+  updateProfileBottomTitle,
+  getProfileBottomTitle,
+  postProfileSkill,
+  removeProfileSkill,
+  getProfileSkill,
 } = require("../controllers/editProfile.controllers");
 
 const route = require("express").Router();
@@ -26,5 +31,20 @@ route.get("/getProfileName", getProfileName);
 
 // ~ update profile Name
 route.patch("/updateProfileTName", updateProfileName);
+
+// ~ update profile bottom title
+route.patch("/updateProfileBottomTitle", updateProfileBottomTitle);
+
+// ~ update profile bottom title
+route.get("/getProfileBottomTitle", getProfileBottomTitle);
+
+// ~ update profile bottom title
+route.post("/postProfileSkill", postProfileSkill);
+
+// ~ update profile bottom title
+route.delete("/removeProfileSkill", removeProfileSkill);
+
+// ~ update profile bottom title
+route.get("/getProfileSkill", getProfileSkill);
 
 module.exports = route;
